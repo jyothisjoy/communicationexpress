@@ -1189,6 +1189,30 @@ function comm_express_compatible_accessories_section()
     wc_get_template_part('single-product/compatible-accessories');
 }
 
+// Product CTA: bottom of single product pages (after related products at 20) and product category loops (after pagination at 10)
+add_action('woocommerce_after_single_product_summary', 'comm_express_product_cta_section', 25);
+add_action('woocommerce_after_shop_loop', 'comm_express_product_cta_section', 15);
+
+function comm_express_product_cta_section()
+{
+    if (is_product()) {
+        $cta = array(
+            'heading' => sprintf(__('Interested in the %s?', 'comm-express'), get_the_title()),
+            'text'    => __('Talk to a Communications Express specialist for pricing, availability and the right accessories for your team.', 'comm-express'),
+        );
+    } else {
+        $term    = get_queried_object();
+        $subject = ($term instanceof WP_Term) ? $term->name : __('radio solution', 'comm-express');
+        $cta = array(
+            'heading' => sprintf(__('Need help choosing the right %s?', 'comm-express'), $subject),
+            'text'    => __('Our team can recommend the right equipment for your industry, coverage area and budget.', 'comm-express'),
+        );
+    }
+
+    set_query_var('comm_express_product_cta', $cta);
+    wc_get_template_part('global/product-cta');
+}
+
 // Remove "Accessory Catalog" tab added by YIKES Custom WooCommerce Product Tabs plugin
 add_filter('woocommerce_product_tabs', function ($tabs) {
     unset($tabs['accessory-catalog']);

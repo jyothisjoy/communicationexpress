@@ -7,7 +7,7 @@ Description: CommExpress is a sophisticated and dynamic WordPress theme specific
 Requires at least: 5.3
 Tested up to: 6.6
 Requires PHP: 7.2
-Version: 1.0.5
+Version: 1.0.6
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: comm-express
@@ -10710,4 +10710,116 @@ color:#101010;
     text-align: left;
     font-size: 13px;
     line-height: 1.5;
+}
+
+/* Product CTA (single product + product category pages) */
+.comm-express-product-cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin: 40px 0 20px;
+    padding: 32px 36px;
+    background: #101419;
+    border-radius: 8px;
+    color: #FFFFFF;
+    clear: both;
+}
+
+.comm-express-product-cta__body {
+    flex: 1 1 320px;
+    min-width: 0;
+}
+
+.comm-express-product-cta__heading {
+    margin: 0 0 8px;
+    font-family: "Rajdhani", sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: #FFFFFF;
+}
+
+.comm-express-product-cta__text {
+    margin: 0;
+    font-family: "Mulish", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #A4A4A4;
+}
+
+.comm-express-product-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 16px;
+    flex: 0 0 auto;
+}
+
+.comm-express-product-cta__btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border: 1px solid #F68C08;
+    border-radius: 30px;
+    background-color: #F68C08;
+    color: #FFFFFF !important;
+    font-family: "Mulish", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none !important;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.comm-express-product-cta__btn:hover,
+.comm-express-product-cta__btn:focus {
+    background-color: #1C1C1C;
+    border-color: #F68C08;
+    color: #F68C08 !important;
+}
+
+.comm-express-product-cta__btn--outline {
+    background-color: transparent;
+    border-color: #2E3237;
+}
+
+.comm-express-product-cta__btn--outline:hover,
+.comm-express-product-cta__btn--outline:focus {
+    background-color: transparent;
+    border-color: #F68C08;
+}
+
+.comm-express-product-cta__phone {
+    font-family: "Mulish", sans-serif;
+    font-size: 14px;
+    color: #A4A4A4;
+    white-space: nowrap;
+}
+
+.comm-express-product-cta__phone a {
+    color: #F68C08 !important;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+@media (max-width: 767px) {
+    .comm-express-product-cta {
+        padding: 24px 20px;
+    }
+
+    .comm-express-product-cta__heading {
+        font-size: 26px;
+    }
+
+    .comm-express-product-cta__actions {
+        width: 100%;
+    }
+
+    .comm-express-product-cta__btn {
+        flex: 1 1 140px;
+        text-align: center;
+    }
 }
