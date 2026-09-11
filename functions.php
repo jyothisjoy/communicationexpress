@@ -1195,19 +1195,38 @@ add_action('woocommerce_after_shop_loop', 'comm_express_product_cta_section', 15
 
 function comm_express_product_cta_section()
 {
+    $term = null;
+
     if (is_product()) {
-        $cta = array(
-            'heading' => sprintf(__('Interested in the %s?', 'comm-express'), get_the_title()),
-            'text'    => __('Talk to a Communications Express specialist for pricing, availability and the right accessories for your team.', 'comm-express'),
-        );
+        // Use the product's most specific category: deepest term wins, generic buckets lose ties.
+        $terms   = get_the_terms(get_the_ID(), 'product_cat');
+        $generic = array('accessories', 'motorola-accessories');
+        $best    = -1;
+        if (is_array($terms)) {
+            foreach ($terms as $candidate) {
+                if (in_array($candidate->slug, array('uncategorized', 'featured-products'), true)) {
+                    continue;
+                }
+                $score = count(get_ancestors($candidate->term_id, 'product_cat')) * 2 + (in_array($candidate->slug, $generic, true) ? 0 : 1);
+                if ($score > $best) {
+                    $best = $score;
+                    $term = $candidate;
+                }
+            }
+        }
     } else {
-        $term    = get_queried_object();
-        $subject = ($term instanceof WP_Term) ? $term->name : __('radio solution', 'comm-express');
-        $cta = array(
-            'heading' => sprintf(__('Need help choosing the right %s?', 'comm-express'), $subject),
-            'text'    => __('Our team can recommend the right equipment for your industry, coverage area and budget.', 'comm-express'),
-        );
+        $queried = get_queried_object();
+        if ($queried instanceof WP_Term) {
+            $term = $queried;
+        }
     }
+
+    $subject = $term ? $term->name : __('radio solution', 'comm-express');
+
+    $cta = array(
+        'heading' => sprintf(__('Need help choosing the right %s?', 'comm-express'), $subject),
+        'text'    => __('Our team can recommend the right equipment for your industry, coverage area and budget.', 'comm-express'),
+    );
 
     set_query_var('comm_express_product_cta', $cta);
     wc_get_template_part('global/product-cta');
