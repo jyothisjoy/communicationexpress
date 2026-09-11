@@ -28,12 +28,14 @@ if ($heading === '') return;
         <a class="comm-express-product-cta__btn" href="<?php echo esc_url(site_url('/request-a-quote/')); ?>">
             <?php esc_html_e('Request a Quote', 'comm-express'); ?>
         </a>
-        <a class="comm-express-product-cta__btn comm-express-product-cta__btn--outline" href="<?php echo esc_url(site_url('/contact-us/')); ?>">
-            <?php esc_html_e('Contact Us', 'comm-express'); ?>
-        </a>
-        <span class="comm-express-product-cta__phone">
-            <?php esc_html_e('or call', 'comm-express'); ?>
-            <a href="tel:+17033210470">(703) 321-0470</a>
-        </span>
+        <div class="comm-express-product-cta__contact">
+            <a class="comm-express-product-cta__btn comm-express-product-cta__btn--outline" href="<?php echo esc_url(site_url('/contact-us/')); ?>">
+                <?php esc_html_e('Contact Us', 'comm-express'); ?>
+            </a>
+            <span class="comm-express-product-cta__phone">
+                <?php esc_html_e('or call', 'comm-express'); ?>
+                <a href="tel:+17033210470">(703) 321-0470</a>
+            </span>
+        </div>
     </div>
 </section>
