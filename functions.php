@@ -1315,7 +1315,7 @@ function comm_express_fix_quote_variation_form_data()
 
 /**
  * Request a Quote page: when the quote has no products, show the general
- * "Request Form" (Contact Form 7, entries logged by CFDB7) instead of the
+ * "Quote Request – General" form (Contact Form 7, entries logged by CFDB7) instead of the
  * plugin's "Your quote is currently empty" notice.
  */
 add_filter('do_shortcode_tag', 'comm_express_empty_quote_default_form', 10, 2);
@@ -1340,7 +1340,7 @@ function comm_express_empty_quote_default_form($output, $tag)
             wp_kses_post(__('No products in your quote yet. <a href="%s">Browse products</a> to add them, or tell us what you need below.', 'comm-express')),
             esc_url(get_permalink(wc_get_page_id('shop')))
         ); ?></p>
-        <?php echo do_shortcode('[contact-form-7 id="a5dee3c" title="Request Form"]'); ?>
+        <?php echo do_shortcode('[contact-form-7 id="3f8e053" title="Quote Request – General"]'); ?>
     </div>
     <?php
     return ob_get_clean();
