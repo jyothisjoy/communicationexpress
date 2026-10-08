@@ -1284,3 +1284,31 @@ function comm_express_loop_short_description_tip()
         . '<path d="M12 11v6M12 7.25v.25" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>'
         . '</svg></span>';
 }
+
+/**
+ * Quote plugin: "Add to Quote" fails for variations whose option values contain
+ * URL-encoded characters (e.g. "AAH06JDC9WA1AN / R7 VHF"). The plugin runs
+ * sanitize_text_field() on the raw serialized form, which strips %XX octets, so
+ * "/" is lost and the value no longer matches the variation.
+ * Drop attributes the chosen variation already defines; the plugin falls back to
+ * the variation's own (exact) values for any attribute that isn't posted.
+ */
+add_action('wp_ajax_add_to_quote_single_vari', 'comm_express_fix_quote_variation_form_data', 1);
+add_action('wp_ajax_nopriv_add_to_quote_single_vari', 'comm_express_fix_quote_variation_form_data', 1);
+function comm_express_fix_quote_variation_form_data()
+{
+    if (empty($_POST['form_data']) || !function_exists('wc_get_product')) {
+        return;
+    }
+    parse_str(wp_unslash($_POST['form_data']), $form_data);
+    $variation = wc_get_product(absint($form_data['variation_id'] ?? 0));
+    if (!$variation || !$variation->is_type('variation')) {
+        return;
+    }
+    foreach ($variation->get_variation_attributes() as $key => $value) {
+        if ('' !== $value) {
+            unset($form_data[$key]);
+        }
+    }
+    $_POST['form_data'] = wp_slash(http_build_query($form_data));
+}
