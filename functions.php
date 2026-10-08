@@ -1312,3 +1312,36 @@ function comm_express_fix_quote_variation_form_data()
     }
     $_POST['form_data'] = wp_slash(http_build_query($form_data));
 }
+
+/**
+ * Request a Quote page: when the quote has no products, show the general
+ * "Request Form" (Contact Form 7, entries logged by CFDB7) instead of the
+ * plugin's "Your quote is currently empty" notice.
+ */
+add_filter('do_shortcode_tag', 'comm_express_empty_quote_default_form', 10, 2);
+function comm_express_empty_quote_default_form($output, $tag)
+{
+    if ('addify-quote-request-page' !== $tag || !function_exists('WC') || !shortcode_exists('contact-form-7')) {
+        return $output;
+    }
+    $quotes = WC()->session ? (array) WC()->session->get('quotes') : array();
+    foreach ($quotes as $item) {
+        if (!empty($item['quantity']) && isset($item['data'])) {
+            return $output;
+        }
+    }
+
+    ob_start();
+    do_action('addify_rfg_success_message');
+    ?>
+    <div class="rfq-default-form">
+        <p><?php printf(
+            /* translators: %s: shop URL */
+            wp_kses_post(__('No products in your quote yet. <a href="%s">Browse products</a> to add them, or tell us what you need below.', 'comm-express')),
+            esc_url(get_permalink(wc_get_page_id('shop')))
+        ); ?></p>
+        <?php echo do_shortcode('[contact-form-7 id="a5dee3c" title="Request Form"]'); ?>
+    </div>
+    <?php
+    return ob_get_clean();
+}
