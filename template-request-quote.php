@@ -79,7 +79,7 @@ get_header();
 							</li>
 							<li>
 								<span class="rfq-contact-list__label">Hours</span>
-								<span class="rfq-contact-list__value">Mon &ndash; Fri, 8:30am &ndash; 5:00pm ET</span>
+								<span class="rfq-contact-list__value">Mon &ndash; Fri, 7:30am &ndash; 4:00pm ET</span>
 							</li>
 							<li>
 								<span class="rfq-contact-list__label">Email</span>

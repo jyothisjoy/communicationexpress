@@ -9,7 +9,7 @@ get_header();
 
 <div id="site-content" class="main-banner">
   <div class="slider-box"
-    style="background: url('<?php bloginfo('template_directory'); ?>/assets/images/caucasian-engineer-inspects-building-structure-quality-control.png');">
+    style="background: url('<?php bloginfo('template_directory'); ?>/assets/images/caucasian-engineer-inspects-building-structure-quality-control.png'); background-size: cover !important; background-position: center;">
     <div class="main-slider">
       <div class="swiper-container theme-main-carousel">
         <div class="swiper-wrapper">

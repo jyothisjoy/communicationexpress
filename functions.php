@@ -551,6 +551,47 @@ function create_news_post_type()
 }
 add_action('init', 'create_news_post_type');
 
+// Register Custom Post Type for Offers
+function create_offer_post_type()
+{
+    $labels = array(
+        'name' => _x('Offers', 'Post Type General Name', 'textdomain'),
+        'singular_name' => _x('Offer', 'Post Type Singular Name', 'textdomain'),
+        'menu_name' => __('Offers', 'textdomain'),
+        'name_admin_bar' => __('Offer', 'textdomain'),
+        'add_new' => __('Add New Offer', 'textdomain'),
+        'add_new_item' => __('Add New Offer', 'textdomain'),
+        'new_item' => __('New Offer', 'textdomain'),
+        'edit_item' => __('Edit Offer', 'textdomain'),
+        'view_item' => __('View Offer', 'textdomain'),
+        'all_items' => __('All Offers', 'textdomain'),
+        'search_items' => __('Search Offers', 'textdomain'),
+        'not_found' => __('No offers found', 'textdomain'),
+        'not_found_in_trash' => __('No offers found in Trash', 'textdomain'),
+    );
+
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'has_archive' => true,
+        'rewrite' => array('slug' => 'offers'),
+        'supports' => array('title', 'editor', 'thumbnail', 'excerpt'),
+        'menu_icon' => 'dashicons-tag',
+        'show_in_rest' => true,
+    );
+
+    register_post_type('offer', $args);
+}
+add_action('init', 'create_offer_post_type');
+
+// Flush rewrite rules once after this version is installed so /offers/ resolves.
+add_action('init', function () {
+    if (get_option('comm_express_offer_rewrite') !== '1') {
+        flush_rewrite_rules(false);
+        update_option('comm_express_offer_rewrite', '1');
+    }
+}, 20);
+
 
 // Add star rating meta box for testimonials
 function testimonial_add_star_rating_meta_box()
@@ -1345,3 +1386,6 @@ function comm_express_empty_quote_default_form($output, $tag)
     <?php
     return ob_get_clean();
 }
+
+// Product lists: hide WooCommerce's "Sale!" badge.
+remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 10);
