@@ -7,7 +7,7 @@ Description: CommExpress is a sophisticated and dynamic WordPress theme specific
 Requires at least: 5.3
 Tested up to: 6.6
 Requires PHP: 7.2
-Version: 1.0.14
+Version: 1.0.15
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: comm-express
@@ -10370,6 +10370,26 @@ color:#101010;
     background-color: #fff;
     cursor: pointer;
     line-height: 1.4;
+}
+
+/* Accessory categories: "Compatible with" filter, on its own row above count/sorting */
+.woocommerce .woocommerce-ordering.comm-express-compat-filter {
+    float: none;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.comm-express-compat-filter label {
+    margin: 0;
+    font-weight: 600;
+    color: #222;
+}
+
+.comm-express-compat-filter select {
+    min-width: 260px;
+    max-width: 100%;
 }
 
 /* UL: grid so every card in a row matches the tallest one's height */

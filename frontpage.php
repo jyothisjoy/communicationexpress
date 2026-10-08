@@ -133,46 +133,6 @@ $comm_express_aboutus_focus_counties = get_field('focus_counties');
 		</div>
     </div>
 
-    <!-- Offers Section -->
-    <?php
-    $offers_query = new WP_Query(array(
-        'post_type' => 'offer',
-        'posts_per_page' => 3,
-        'orderby' => 'date',
-        'order' => 'DESC',
-    ));
-
-    if ($offers_query->have_posts()): ?>
-        <section class="products-services-section offers-section section-spacing">
-            <div class="container">
-                <h2>Current Offers <a href="<?php echo esc_url(get_post_type_archive_link('offer')); ?>" class="view-all-btn">View All</a></h2>
-                <div class="products-grid row">
-                    <?php while ($offers_query->have_posts()):
-                        $offers_query->the_post(); ?>
-                        <div class="col-md-4 py-3 px-2">
-                            <div class="product-item text-center">
-                                <div class="product-item-img">
-                                    <?php if (has_post_thumbnail()) { ?>
-                                        <img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'medium_large')); ?>" alt="<?php the_title_attribute(); ?>">
-                                    <?php } ?>
-                                </div>
-                                <div class="product-item-content">
-                                    <h3 class="text-left"><?php the_title(); ?></h3>
-                                    <?php if (has_excerpt()) { ?>
-                                        <p class="text-left"><?php echo esc_html(get_the_excerpt()); ?></p>
-                                    <?php } ?>
-                                    <a href="<?php the_permalink(); ?>" class="read-more-btn">View Offer</a>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endwhile; ?>
-                </div>
-            </div>
-        </section>
-    <?php endif;
-    wp_reset_postdata();
-    ?>
-
 
     <!-- Distributed Antenna Systems (DAS) Section -->
     <section class="das-section section-spacing">

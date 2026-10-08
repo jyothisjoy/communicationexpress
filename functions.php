@@ -219,6 +219,7 @@ require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/classes/body-classes.php';
 require get_template_directory() . '/inc/widgets/widgets.php';
 require get_template_directory() . '/inc/metabox.php';
+require get_template_directory() . '/inc/compatible-products.php';
 require get_template_directory() . '/inc/pagination.php';
 require get_template_directory() . '/lib/breadcrumbs/breadcrumbs.php';
 require get_template_directory() . '/lib/custom/css/dynamic-style.php';
@@ -1377,9 +1378,9 @@ function comm_express_empty_quote_default_form($output, $tag)
     ?>
     <div class="rfq-default-form">
         <p><?php printf(
-            /* translators: %s: shop URL */
+            /* translators: %s: products URL */
             wp_kses_post(__('No products in your quote yet. <a href="%s">Browse products</a> to add them, or tell us what you need below.', 'comm-express')),
-            esc_url(get_permalink(wc_get_page_id('shop')))
+            esc_url(home_url('/product-category/portable-radios/'))
         ); ?></p>
         <?php echo do_shortcode('[contact-form-7 id="3f8e053" title="Quote Request – General"]'); ?>
     </div>
@@ -1387,5 +1388,6 @@ function comm_express_empty_quote_default_form($output, $tag)
     return ob_get_clean();
 }
 
-// Product lists: hide WooCommerce's "Sale!" badge.
+// Hide WooCommerce's "Sale!" badge in product lists and on single product pages.
 remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 10);
+remove_action('woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10);

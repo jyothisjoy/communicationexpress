@@ -11,6 +11,7 @@
 if (!defined('ABSPATH')) exit;
 
 $accessories = get_query_var('comm_express_accessories', array());
+$heading     = get_query_var('comm_express_accessories_heading', __('Compatible Accessories', 'comm-express'));
 
 if (empty($accessories)) return;
 ?>
@@ -18,7 +19,7 @@ if (empty($accessories)) return;
 <section class="comm-express-compatible-accessories" style="margin: 40px 0;">
 
     <h2 style="border-bottom: 2px solid #e2e2e2; padding-bottom: 10px; margin-bottom: 20px;">
-        <?php esc_html_e('Compatible Accessories', 'comm-express'); ?>
+        <?php echo esc_html($heading); ?>
     </h2>
 
     <div class="row">

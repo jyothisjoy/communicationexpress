@@ -45,7 +45,7 @@ get_header();
               <a href="<?php the_permalink(); ?>" class="col-md-4">
                 <div class="bloglist">
                   <div class="bloglistimg">
-                    <img src="<?php echo esc_url($thumbnail_url); ?>" alt="<?php the_title(); ?>" />
+                    <img src="<?php echo esc_url($thumbnail_url); ?>" alt="<?php the_title_attribute(); ?>" />
                   </div>
                   <h4 class="bloglisttitle"><?php the_title(); ?></h4>
                 </div>
