@@ -714,7 +714,162 @@ get_header();
 		color: #f68c08 !important;
 	}
 
+	/* Default CF7 form shown when the quote is empty */
+	.rfq-default-form > p {
+		font-family: "Mulish", sans-serif;
+		font-size: 16px;
+		color: #4a4a4a;
+		margin: 0 0 24px;
+	}
+
+	.rfq-default-form > p a {
+		color: #f68c08;
+		font-weight: 600;
+	}
+
+	.rfq-default-form .wpcf7-form {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 18px 20px;
+		align-items: start;
+	}
+
+	.rfq-default-form .wpcf7-form > * {
+		grid-column: 1 / -1;
+		margin: 0;
+	}
+
+	.rfq-default-form .wpcf7-form > .width-50 {
+		grid-column: auto;
+		width: auto;
+		display: block;
+		margin: 0;
+	}
+
+	.rfq-default-form .wpcf7-form > .width-100 > strong {
+		display: block;
+		padding-top: 18px;
+		border-top: 1px solid #ececec;
+		font-family: "Mulish", sans-serif;
+		font-size: 16px;
+		color: #1c1c1c;
+	}
+
+	.rfq-default-form label {
+		display: block;
+		margin: 0;
+		font-family: "Mulish", sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		line-height: 1.3;
+		color: #101010;
+	}
+
+	.rfq-default-form label br {
+		display: none;
+	}
+
+	.rfq-default-form .wpcf7-form-control-wrap {
+		display: block;
+		width: 100%;
+		margin-top: 6px;
+	}
+
+	.rfq-default-form .mandatory {
+		color: #f68c08;
+	}
+
+	.rfq-default-form input.wpcf7-form-control:not(.wpcf7-submit),
+	.rfq-default-form select.wpcf7-form-control,
+	.rfq-default-form textarea.wpcf7-form-control {
+		width: 100% !important;
+		min-height: 44px !important;
+		margin: 0;
+		padding: 10px 14px !important;
+		border: 1px solid #dadada !important;
+		border-radius: 4px !important;
+		background-color: #fff !important;
+		box-shadow: none !important;
+		font-family: "Mulish", sans-serif;
+		font-size: 14px;
+		font-weight: 400;
+		line-height: 1.4;
+		color: #1c1c1c;
+		box-sizing: border-box;
+		transition: border-color 0.2s ease;
+	}
+
+	.rfq-default-form select.wpcf7-form-control {
+		padding-right: 36px !important;
+		font-size: 14px !important;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%234a4a4a' stroke-width='1.6'/%3E%3C/svg%3E") !important;
+		background-repeat: no-repeat !important;
+		background-position: right 14px center !important;
+		-webkit-appearance: none;
+		appearance: none;
+	}
+
+	.rfq-default-form textarea.wpcf7-form-control {
+		min-height: 120px !important;
+		resize: vertical;
+	}
+
+	.rfq-default-form .wpcf7-form-control:focus {
+		outline: none;
+		border-color: #f68c08 !important;
+	}
+
+	.rfq-default-form .wpcf7-not-valid {
+		border-color: #e74c3c !important;
+	}
+
+	.rfq-default-form .wpcf7-not-valid-tip {
+		margin-top: 4px;
+		font-family: "Mulish", sans-serif;
+		font-size: 13px;
+		font-weight: 400;
+	}
+
+	.rfq-default-form .wpcf7-submit {
+		width: auto !important;
+		margin: 6px 0 0;
+		background: #f68c08 !important;
+		color: #fff !important;
+		border: 1px solid #d36900 !important;
+		border-radius: 30px;
+		padding: 12px 34px;
+		font-family: "Rajdhani", sans-serif;
+		font-weight: 700;
+		font-size: 15px;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		cursor: pointer;
+		transition: background 0.2s ease, color 0.2s ease;
+	}
+
+	.rfq-default-form .wpcf7-submit:hover,
+	.rfq-default-form .wpcf7-submit:focus {
+		background: #1c1c1c !important;
+		color: #f68c08 !important;
+	}
+
+	.rfq-default-form .wpcf7-spinner {
+		width: 24px;
+		margin: 0 0 0 12px;
+		vertical-align: middle;
+	}
+
+	.rfq-default-form .wpcf7-response-output {
+		margin: 0 !important;
+		font-family: "Mulish", sans-serif;
+		font-size: 14px;
+	}
+
 	@media (max-width: 640px) {
+		.rfq-default-form .wpcf7-form {
+			grid-template-columns: minmax(0, 1fr);
+		}
+
 		.rfq-card--quote .addify-option-field.adf_half_width {
 			width: 100% !important;
 			flex: 0 0 100% !important;
