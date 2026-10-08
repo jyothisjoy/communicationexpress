@@ -64,7 +64,7 @@ $comm_express_aboutus_focus_counties = get_field('focus_counties');
     <section id="products" class="products-services-section section-spacing">
 		<div class="container">
         <?php if ($home_productsandservices_title != "") { ?>
-            <h2><?php echo comm_express_kses($home_productsandservices_title); ?> <a href="https://comexpress.lokas.org/product-category/portable-radios" class="view-all-btn">View All</a></h2>
+            <h2><?php echo comm_express_kses($home_productsandservices_title); ?> <a href="<?php echo esc_url(home_url('/product-category/portable-radios/')); ?>" class="view-all-btn">View All</a></h2>
         <?php } ?>
 
         <div class="products-grid row">
@@ -88,7 +88,7 @@ $comm_express_aboutus_focus_counties = get_field('focus_counties');
                                 <p  class="text-left"><?php echo comm_express_kses($servicesdesc); ?>.</p>
                             <?php } ?>
                             <?php if ($servicesurl != "") { ?>
-                                <a href="<?php echo esc_url($servicesurl['url']); ?> " class="read-more-btn">Read More</a>
+                                <a href="<?php echo esc_url($servicesurl['url']); ?>" class="read-more-btn">Read More</a>
                             <?php } ?>
 							</div>	
                         </div>
@@ -203,7 +203,7 @@ $comm_express_aboutus_focus_counties = get_field('focus_counties');
         ?>
         <section class="videos-section section-spacing">
 			<div class="container">
-            <h2>Videos <a href="https://comexpress.lokas.org/videos/" class="view-all-btn">View All</a></h2>
+            <h2>Videos <a href="<?php echo esc_url(home_url('/videos/')); ?>" class="view-all-btn">View All</a></h2>
             <div class="video-grid row">
 
                 <?php while ($custom_query->have_posts()):
