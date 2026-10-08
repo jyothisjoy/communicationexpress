@@ -88,7 +88,8 @@ $comm_express_aboutus_focus_counties = get_field('focus_counties');
                                 <p  class="text-left"><?php echo comm_express_kses($servicesdesc); ?>.</p>
                             <?php } ?>
                             <?php if ($servicesurl != "") { ?>
-                                <a href="<?php echo esc_url($servicesurl['url']); ?>" class="read-more-btn">Read More</a>
+                                <?php $is_product_link = preg_match('#/product(-category)?/#', $servicesurl['url']); ?>
+                                <a href="<?php echo esc_url($servicesurl['url']); ?>" class="read-more-btn"><?php echo $is_product_link ? 'View Products' : 'Read More'; ?></a>
                             <?php } ?>
 							</div>	
                         </div>
