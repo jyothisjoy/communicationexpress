@@ -1391,3 +1391,6 @@ function comm_express_empty_quote_default_form($output, $tag)
 // Hide WooCommerce's "Sale!" badge in product lists and on single product pages.
 remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 10);
 remove_action('woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10);
+
+// Product listing pages: no "Sort by" dropdown.
+remove_action('woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30);

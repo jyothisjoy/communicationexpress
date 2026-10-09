@@ -114,9 +114,6 @@ function comm_express_compatibility_filter_form()
                 <option value="<?php echo esc_attr($product_id); ?>" <?php selected($selected, $product_id); ?>><?php echo esc_html($title); ?></option>
             <?php endforeach; ?>
         </select>
-        <?php if (!empty($_GET['orderby'])) : ?>
-            <input type="hidden" name="orderby" value="<?php echo esc_attr(wc_clean(wp_unslash($_GET['orderby']))); ?>">
-        <?php endif; ?>
         <noscript><button type="submit" class="button"><?php esc_html_e('Filter', 'comm-express'); ?></button></noscript>
     </form>
     <?php

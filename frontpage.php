@@ -168,11 +168,13 @@ $comm_express_aboutus_focus_counties = get_field('focus_counties');
 		<div class="container">
         <h2>Motorola Products</h2>
         <div class="brands">
-            <?php for ($k = 1; $k <= 4; $k++) {
+            <?php for ($k = 1; $k <= 5; $k++) {
                 $motorolalogo = get_field("home_motorola_logo_" . $k);
                 if ($motorolalogo != "") {
+                    // Slot 5 has no ACF field definition, so it comes back as a raw attachment ID.
+                    $motorolalogo_url = is_array($motorolalogo) ? $motorolalogo['url'] : wp_get_attachment_image_url($motorolalogo, 'full');
                     ?>
-                    <img src="<?php echo esc_url($motorolalogo['url']); ?>" alt="Motorola">
+                    <img src="<?php echo esc_url($motorolalogo_url); ?>" alt="Motorola">
                     <?php
                 }
             } ?>
